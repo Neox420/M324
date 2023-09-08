@@ -32,3 +32,19 @@ def test_add():
     # Then: The most recently added to-do should have a date
     item = helper.items[-1]
     assert isinstance(item.date, datetime.date)
+
+
+def test_category_assignment():
+    # Given: I want to assign a category to a to-do
+    text = "Debugging"
+    date = "2023-09-06"
+    category = "Software"
+
+    # When: I add the item and assign a category
+    helper.add(text, date)
+    helper.assign_category(text, category)
+
+    # Then: The item should have the assigned category
+    item = helper.items[-1]  # Get the last added item
+    assert isinstance(item.date, datetime.date)
+    assert item.category == category
