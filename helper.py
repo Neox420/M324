@@ -7,11 +7,13 @@ items = []
 class Item:
     text: str
     isCompleted: bool = False
+    date: str = ""
 
 
 def add(text):
     text = text.replace('b', 'bbb').replace('B', 'Bbb')
-    items.append(Item(text))
+    items.append(Item(text, date))
+    items.sort(key=operator.attrgetter('date'))
 
 
 def get_all():
