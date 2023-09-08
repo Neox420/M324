@@ -9,6 +9,7 @@ items = []
 class Item:
     text: str
     date: datetime
+    category: str = "Software"
     isCompleted: bool = False
 
 
@@ -27,6 +28,14 @@ def add(text, date=None):
         date = datetime.datetime.strptime(date, "%Y-%m-%d")
     items.append(Item(text, date))
     items.sort(key=operator.attrgetter("date"))
+
+
+def assign_category(text, category):
+    # Find the ToDoItem with the given text
+    for item in items:
+        if item.text == text:
+            item.category = category
+            return
 
 
 def get_all():
